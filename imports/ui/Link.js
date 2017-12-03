@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Accounts } from 'meteor/accounts-base';
 
@@ -18,9 +19,7 @@ export default class Link extends React.Component {
     e.preventDefault();
 
     if(url) {
-      Links.insert({
-        url
-      });
+      Meteor.call('links.insert', url)
       this.refs.url.value = '';
     }
   }
