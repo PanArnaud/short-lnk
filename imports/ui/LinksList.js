@@ -4,9 +4,11 @@ import { Tracker } from 'meteor/tracker';
 
 import { Links } from './../api/links';
 
+import LinksListItem from './LinksListItem';
+
 export default class LinksList extends React.Component {
-  constructor(pros) {
-    super(pros);
+  constructor(props) {
+    super(props);
     this.state = {
       links: []
     };
@@ -17,26 +19,17 @@ export default class LinksList extends React.Component {
       const links = Links.find().fetch();
       this.setState({
         links
-      })
+      });
     });
   }
   conponentWillUnmount() {
     this.linksTracker.stop();
   }
   renderLinksListItems() {
-    if(this.state.links.length === 0) {
-      return (
-        <div>
-          <p>Add your first link</p>
-        </div>
-      );
-    } else {
-      return this.state.links.map((link) => {
-        return (
-          <p key={link._id}>{link.url}</p>
-        );
-      });
-    }
+    return this.state.links.map((link) => {
+      const shortUrl = Meteor.absoluteUrl(link._id);
+      return <LinksListItem key={link._id} shortUrl={shortUrl} {...link}/>;
+    });
   }
   render() {
     return (
