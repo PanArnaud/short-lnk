@@ -7,9 +7,11 @@ const PrivateHeader = (props) => {
     Accounts.logout();
   }
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <button onClick={onLogout.bind(this)}>Logout</button>
+    <div className="header">
+      <div className="header__content">
+        <h1 className="header__title">{props.title}</h1>
+        <button className="button button--link-text" onClick={onLogout.bind(this)}>Logout</button>
+      </div>
     </div>
   );
 };
