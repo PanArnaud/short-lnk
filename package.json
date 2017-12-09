@@ -17,5 +17,8 @@
     "react-router": "^3.2.0",
     "shortid": "^2.2.8",
     "simpl-schema": "^1.1.0"
+  },
+  "engines": {
+    "node": "8.8.1"
   }
 }
